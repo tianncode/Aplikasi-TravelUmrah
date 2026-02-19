@@ -18,7 +18,7 @@ License: For each use you must have a valid license purchased only from above li
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Open HTML Pro- Bootstrap 5 HTML & Laravel Multipurpose Admin Dashboard Theme by KeenThemes</title>
+    <title>Rizqia Travel Umrah & Haji</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="Open admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
@@ -32,19 +32,25 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/products/open-html-pro" />
     <meta property="og:site_name" content="Open HTML Pro by Keenthemes" />
     <link rel="canonical" href="http://preview.keenthemes.com/#" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!--begin::Fonts(mandatory for all pages)-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> <!--end::Fonts-->
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    {{-- ← tambahkan ini --}}
+    <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     <!--end::Vendor Stylesheets-->
 
 
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
     <!-- Google tag (gtag.js) -->
@@ -122,7 +128,8 @@ License: For each use you must have a valid license purchased only from above li
 
                         <!--begin::Logo image-->
                         <a href="index708f.html?page=index">
-                            <img alt="Logo" src="assets/media/logos/default-dark.svg" class="h-30px" />
+                            <img alt="Logo" src="{{ asset('assets/media/logos/default-dark.svg') }}"
+                                class="h-30px" />
                         </a>
                         <!--end::Logo image-->
                     </div>
@@ -208,7 +215,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="d-flex text-gray-900 text-hover-primary align-items-center mb-5">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-4">
-                                                        <img src="assets/media/avatars/300-6.jpg" alt="" />
+                                                        <img src="{{ asset('assets/media/avatars/300-6.jpg') }}"
+                                                            alt="" />
                                                     </div>
                                                     <!--end::Symbol-->
 
@@ -229,7 +237,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="d-flex text-gray-900 text-hover-primary align-items-center mb-5">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-4">
-                                                        <img src="assets/media/avatars/300-2.jpg" alt="" />
+                                                        <img src="{{ asset('assets/media/avatars/300-2.jpg') }}"
+                                                            alt="" />
                                                     </div>
                                                     <!--end::Symbol-->
 
@@ -250,7 +259,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="d-flex text-gray-900 text-hover-primary align-items-center mb-5">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-4">
-                                                        <img src="assets/media/avatars/300-9.jpg" alt="" />
+                                                        <img src="{{ asset('assets/media/avatars/300-9.jpg') }}"
+                                                            alt="" />
                                                     </div>
                                                     <!--end::Symbol-->
 
@@ -270,7 +280,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="d-flex text-gray-900 text-hover-primary align-items-center mb-5">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-4">
-                                                        <img src="assets/media/avatars/300-14.jpg" alt="" />
+                                                        <img src="{{ asset('assets/media/avatars/300-14.jpg') }}"
+                                                            alt="" />
                                                     </div>
                                                     <!--end::Symbol-->
 
@@ -290,7 +301,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="d-flex text-gray-900 text-hover-primary align-items-center mb-5">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-4">
-                                                        <img src="assets/media/avatars/300-11.jpg" alt="" />
+                                                        <img src="{{ asset('assets/media/avatars/300-11.jpg') }}"
+                                                            alt="" />
                                                     </div>
                                                     <!--end::Symbol-->
 
@@ -318,7 +330,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <img class="w-20px h-20px"
-                                                                src="assets/media/svg/brand-logos/volicity-9.svg"
+                                                                src="{{ asset('assets/media/svg/brand-logos/volicity-9.svg') }}"
                                                                 alt="" />
                                                         </span>
                                                     </div>
@@ -342,7 +354,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <img class="w-20px h-20px"
-                                                                src="assets/media/svg/brand-logos/tvit.svg"
+                                                                src="{{ asset('assets/media/svg/brand-logos/tvit.svg') }}"
                                                                 alt="" />
                                                         </span>
                                                     </div>
@@ -367,7 +379,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <img class="w-20px h-20px"
-                                                                src="assets/media/svg/misc/infography.svg"
+                                                                src="{{ asset('assets/media/svg/misc/infography.svg') }}"
                                                                 alt="" />
                                                         </span>
                                                     </div>
@@ -391,7 +403,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <img class="w-20px h-20px"
-                                                                src="assets/media/svg/brand-logos/leaf.svg"
+                                                                src="{{ asset('assets/media/svg/brand-logos/leaf.svg') }}"
                                                                 alt="" />
                                                         </span>
                                                     </div>
@@ -415,7 +427,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="symbol symbol-40px me-4">
                                                         <span class="symbol-label bg-light">
                                                             <img class="w-20px h-20px"
-                                                                src="assets/media/svg/brand-logos/tower.svg"
+                                                                src="{{ asset('assets/media/svg/brand-logos/tower.svg') }}"
                                                                 alt="" />
                                                         </span>
                                                     </div>
@@ -1045,142 +1057,6 @@ License: For each use you must have a valid license purchased only from above li
             <!--begin::Wrapper-->
             <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
 
-
-                <!--begin::Toolbar-->
-                <div id="kt_app_toolbar" class="app-toolbar ">
-
-                    <!--begin::Toolbar container-->
-                    <div id="kt_app_toolbar_container"
-                        class="app-container  container-fluid d-flex flex-lg-column py-3 py-lg-6 ">
-
-
-
-                        <!--begin::Page title-->
-                        <div class="page-title d-flex align-items-center gap-1 me-3" data-kt-swapper="true"
-                            data-kt-swapper-mode="{default: 'prepend', lg: 'prepend'}"
-                            data-kt-swapper-parent="{default: '#kt_app_content_container', lg: '#kt_app_header_wrapper'}">
-                            <!--begin::Title-->
-                            <h1 class="text-gray-900 fw-bolder fs-2x mb-1 lh-1">
-                                Account
-                            </h1>
-                            <!--end::Title-->
-
-
-                            <!--begin::Breadcrumb-->
-                            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-base ms-3">
-
-
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-                                    <a href="index708f.html?page=index" class="text-gray-700 text-hover-primary">
-                                        <i class="ki-duotone ki-home fs-3 text-gray-500 ms-2"></i>
-                                    </a>
-                                </li>
-                                <!--end::Item-->
-
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n2"></i>
-                                </li>
-                                <!--end::Item-->
-
-
-
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-                                    Account </li>
-                                <!--end::Item-->
-
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item">
-                                    <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n2"></i>
-                                </li>
-                                <!--end::Item-->
-
-
-
-                                <!--begin::Item-->
-                                <li class="breadcrumb-item text-gray-500">
-                                    Overview </li>
-                                <!--end::Item-->
-
-
-                            </ul>
-                            <!--end::Breadcrumb-->
-                        </div>
-                        <!--end::Page title-->
-                        <!--begin::Navs-->
-                        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 active"
-                                    href="index708f.html?page=index">
-                                    Overview </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="index1477.html?page=account/settings">
-                                    Settings </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="indexbbde.html?page=account/security">
-                                    Security </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="index93d4.html?page=account/billing">
-                                    Billing </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="index28ff.html?page=account/statements">
-                                    Statements </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="indexe638.html?page=account/referrals">
-                                    Referrals </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="index93a9.html?page=account/api-keys">
-                                    API Keys </a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
-                                    href="indexcf4a.html?page=account/logs">
-                                    Logs </a>
-                            </li>
-                            <!--end::Nav item-->
-                        </ul>
-                        <!--begin::Navs-->
-
-                        <!--begin::Separator-->
-                        <div class="app-toolbar-container-separator separator d-none d-lg-flex"></div>
-                        <!--end::Separator-->
-                    </div>
-                    <!--end::Toolbar container-->
-                </div>
-                <!--end::Toolbar-->
-
-
-
-
                 <!--begin::Sidebar-->
                 <div id="kt_app_sidebar" class="app-sidebar  flex-column " data-kt-drawer="true"
                     data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}"
@@ -1194,7 +1070,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="d-flex flex-stack d-none d-lg-flex mb-13">
                             <!--begin::Logo-->
                             <a href="index708f.html?page=index" class="app-sidebar-logo">
-                                <img alt="Logo" src="assets/media/logos/default.svg"
+                                <img alt="Logo" src="{{ asset('assets/media/logos/default.svg') }}"
                                     class="h-30px app-sidebar-logo-default" />
                             </a>
                             <!--end::Logo-->
@@ -1217,7 +1093,7 @@ License: For each use you must have a valid license purchased only from above li
                                         data-kt-menu="true" id="kt_menu_notifications">
                                         <!--begin::Heading-->
                                         <div class="d-flex flex-column bgi-no-repeat rounded-top"
-                                            style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
+                                            style="background-image:url('{{ asset('assets/media/misc/menu-header-bg.jpg') }}">
                                             <!--begin::Title-->
                                             <h3 class="text-white fw-semibold px-9 mt-10 mb-6">
                                                 Notifications <span class="fs-8 opacity-75 ps-3">24 reports</span>
@@ -1549,7 +1425,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <!--begin::Illustration-->
                                                     <div class="text-center px-4">
                                                         <img class="mw-100 mh-200px" alt="image"
-                                                            src="assets/media/illustrations/dozzy-1/1.png" />
+                                                            src="{{ asset('assets/media/illustrations/dozzy-1/1.png') }}" />
                                                     </div>
                                                     <!--end::Illustration-->
                                                 </div>
@@ -1859,7 +1735,7 @@ License: For each use you must have a valid license purchased only from above li
                             data-kt-menu-placement="bottom-start">
                             <!--begin::User-->
                             <div class="cursor-pointer symbol symbol-35px symbol-lg-40px me-3 ms-n2">
-                                <img src="assets/media/avatars/300-3.jpg" alt="user" />
+                                <img src="{{ asset('assets/media/avatars/300-3.jpg') }}" alt="user" />
                             </div>
                             <!--end::User-->
 
@@ -1887,7 +1763,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <div class="menu-content d-flex align-items-center px-3">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-50px me-5">
-                                        <img alt="Logo" src="assets/media/avatars/300-3.jpg" />
+                                        <img alt="Logo" src="{{ asset('assets/media/avatars/300-3.jpg') }}" />
                                     </div>
                                     <!--end::Avatar-->
 
@@ -2096,7 +1972,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <span
                                             class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
                                             English <img class="w-15px h-15px rounded-1 ms-2"
-                                                src="assets/media/flags/united-states.svg" alt="" />
+                                                src="{{ asset('assets/media/flags/united-states.svg') }}"
+                                                alt="" />
                                         </span>
                                     </span>
                                 </a>
@@ -2108,7 +1985,8 @@ License: For each use you must have a valid license purchased only from above li
                                         <a href="index1477.html?page=account/settings"
                                             class="menu-link d-flex px-5 active">
                                             <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/united-states.svg"
+                                                <img class="rounded-1"
+                                                    src="{{ asset('assets/media/flags/united-states.svg') }}"
                                                     alt="" />
                                             </span>
                                             English
@@ -2120,7 +1998,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item px-3">
                                         <a href="index1477.html?page=account/settings" class="menu-link d-flex px-5">
                                             <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/spain.svg"
+                                                <img class="rounded-1"
+                                                    src="{{ asset('assets/media/flags/spain.svg') }}"
                                                     alt="" />
                                             </span>
                                             Spanish
@@ -2132,7 +2011,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item px-3">
                                         <a href="index1477.html?page=account/settings" class="menu-link d-flex px-5">
                                             <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/germany.svg"
+                                                <img class="rounded-1"
+                                                    src="{{ asset('assets/media/flags/germany.svg') }}"
                                                     alt="" />
                                             </span>
                                             German
@@ -2144,7 +2024,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item px-3">
                                         <a href="index1477.html?page=account/settings" class="menu-link d-flex px-5">
                                             <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/japan.svg"
+                                                <img class="rounded-1"
+                                                    src="{{ asset('assets/media/flags/japan.svg') }}"
                                                     alt="" />
                                             </span>
                                             Japanese
@@ -2154,10 +2035,10 @@ License: For each use you must have a valid license purchased only from above li
 
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="index1477.html?page=account/settings"
-                                            class="menu-link d-flex px-5">
+                                        <a href="index1477.html?page=account/settings" class="menu-link d-flex px-5">
                                             <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/france.svg"
+                                                <img class="rounded-1"
+                                                    src="{{ asset('assets/media/flags/france.svg') }}"
                                                     alt="" />
                                             </span>
                                             French
@@ -2198,50 +2079,172 @@ License: For each use you must have a valid license purchased only from above li
 
                     <!--begin::Navs-->
                     <div class="app-sidebar-navs flex-column-fluid pb-6" id="kt_app_sidebar_navs">
-                        <div id="kt_app_sidebar_navs_wrappers" class="hover-scroll-y my-2 mx-4"
-                            data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+                        <div id="kt_app_sidebar_navs_wrappers" class="hover-scroll-y my-2 mx-4" data-kt-scroll="true"
+                            data-kt-scroll-activate="true" data-kt-scroll-height="auto"
                             data-kt-scroll-dependencies="#kt_app_sidebar_header"
                             data-kt-scroll-wrappers="#kt_app_sidebar_navs" data-kt-scroll-offset="5px">
 
                             <!--begin::Sidebar menu-->
-                            <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
-                                class="menu menu-column menu-rounded menu-sub-indention menu-active-bg mb-7">
+                            @auth
+                                @php
+                                    $roles = auth()->user()->roles->pluck('name')->toArray();
+                                @endphp
 
-                                <!--begin:Menu item-->
-                                <div class="menu-item pt-5"><!--begin:Menu content-->
-                                    <div class="menu-content"><span
-                                            class="menu-heading fw-bold text-uppercase fs-5">Dashboards</span></div>
-                                    <!--end:Menu content-->
-                                </div><!--end:Menu item--><!--begin:Menu item-->
-                                <div class="menu-item"><!--begin:Menu link--><a class="menu-link active"
-                                        href="index708f.html?page=index"><span class="menu-icon"><i
-                                                class="ki-duotone ki-element-11 fs-1"><span
-                                                    class="path1"></span><span class="path2"></span><span
-                                                    class="path3"></span><span
-                                                    class="path4"></span></i></span><span
-                                            class="menu-title">Default</span></a><!--end:Menu link--></div>
-                                <!--end:Menu item--><!--begin:Menu item-->
-                                <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                        href="index13c3.html?page=dashboards/projects"><span class="menu-icon"><i
-                                                class="ki-duotone ki-some-files fs-1"><span
-                                                    class="path1"></span><span
-                                                    class="path2"></span></i></span><span
-                                            class="menu-title">Projects</span></a><!--end:Menu link--></div>
-                                <!--end:Menu item--><!--begin:Menu item-->
-                                <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                        href="indexd09c.html?page=dashboards/ecommerce"><span class="menu-icon"><i
-                                                class="ki-duotone ki-chart-line-star fs-1"><span
-                                                    class="path1"></span><span class="path2"></span><span
-                                                    class="path3"></span></i></span><span
-                                            class="menu-title">eCommerce</span></a><!--end:Menu link--></div>
-                                <!--end:Menu item--><!--begin:Menu item-->
-                                <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                        href="index9a3c.html?page=dashboards/bidding"><span class="menu-icon"><i
-                                                class="ki-duotone ki-rescue fs-1"><span class="path1"></span><span
-                                                    class="path2"></span></i></span><span
-                                            class="menu-title">Bidding</span></a><!--end:Menu link--></div>
-                                <!--end:Menu item-->
-                            </div>
+                                <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
+                                    class="menu menu-column menu-rounded menu-sub-indention menu-active-bg mb-7">
+
+                                    {{-- ================= ADMIN ONLY ================= --}}
+                                    @if (in_array('admin', $roles))
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item pt-5">
+                                            <div class="menu-content">
+                                                <span class="menu-heading fw-bold text-uppercase fs-5">Dashboards</span>
+                                            </div>
+                                        </div>
+                                        <!--end:Menu item-->
+
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item">
+                                            <a class="menu-link active" href="/dashboard">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-element-11 fs-1">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Landing Page</span>
+                                            </a>
+                                        </div>
+                                        <!--end:Menu item-->
+
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-some-files fs-1">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Management Users</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <a class="menu-link" href="{{ route('agent.tabel') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Agent</span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="menu-item">
+                                                    <a class="menu-link" href="{{ route('jemaah.tabel') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Jemaah</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end:Menu item-->
+
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-some-files fs-1">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">Management Paket</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <a class="menu-link {{ request()->route('type') ? '' : 'active' }}"
+                                                        href="{{ route('package.tabel') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Package</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end:Menu item-->
+                                    @endif
+
+
+                                    {{-- ================= LIST PAKET (ADMIN + AGENT + JEMAAH) ================= --}}
+                                    @if (array_intersect(['admin', 'agent', 'jemaah'], $roles))
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
+                                            <span class="menu-link">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-some-files fs-1">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">List Paket</span>
+                                                <span class="menu-arrow"></span>
+                                            </span>
+
+                                            <div class="menu-sub menu-sub-accordion">
+                                                <div class="menu-item">
+                                                    <a class="menu-link {{ request()->route('type') == 'umrah' ? 'active' : '' }}"
+                                                        href="{{ route('package.tabel', 'umrah') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Umrah</span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="menu-item">
+                                                    <a class="menu-link {{ request()->route('type') == 'haji' ? 'active' : '' }}"
+                                                        href="{{ route('package.tabel', 'haji') }}">
+                                                        <span class="menu-bullet">
+                                                            <span class="bullet bullet-dot"></span>
+                                                        </span>
+                                                        <span class="menu-title">Haji</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end:Menu item-->
+                                    @endif
+
+
+                                    {{-- ================= LIST BOOKING (ADMIN + AGENT) ================= --}}
+                                    @if (array_intersect(['admin', 'agent'], $roles))
+                                        <!--begin:Menu item-->
+                                        <div class="menu-item">
+                                            <a class="menu-link" href="">
+                                                <span class="menu-icon">
+                                                    <i class="ki-duotone ki-rescue fs-1">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                    </i>
+                                                </span>
+                                                <span class="menu-title">List Booking</span>
+                                            </a>
+                                        </div>
+                                        <!--end:Menu item-->
+                                    @endif
+
+                                </div>
+
+                            @endauth
+
                             <!--end::Sidebar menu-->
                         </div>
                     </div>
@@ -2311,12 +2314,12 @@ License: For each use you must have a valid license purchased only from above li
     </script>
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
 
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <script src="../../cdn.amcharts.com/lib/5/index.js"></script>
     <script src="../../cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="../../cdn.amcharts.com/lib/5/percent.js"></script>
@@ -2331,11 +2334,11 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Vendors Javascript-->
 
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="assets/js/widgets.bundle.js"></script>
-    <script src="assets/js/custom/widgets.js"></script>
-    <script src="assets/js/custom/apps/chat/chat.js"></script>
-    <script src="assets/js/custom/utilities/modals/create-app.js"></script>
-    <script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/utilities/modals/create-app.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

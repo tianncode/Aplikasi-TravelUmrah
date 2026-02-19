@@ -17,10 +17,8 @@ class AuthC extends Controller
         return view('auth.login'); // login untuk semua role
     }
 
-    // ===== Proses Login =====
     public function login(Request $request)
     {
-        // Validasi input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -29,30 +27,35 @@ class AuthC extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Proteksi session
+
             $request->session()->regenerate();
 
-            $role = Auth::user()->role;
-
-            // Gunakan redirect()->intended agar user diarahkan ke halaman sebelumnya jika ada
-            if ($role === 'Admin') {
-                return redirect()->intended(route('dashboard'));
-            } elseif ($role === 'Agent') {
-                return redirect()->intended(route('agen.dashboard'));
-            } elseif ($role === 'Jemaah') {
-                return redirect()->intended(route('jemaah.dashboard'));
+            $user = Auth::user();
+            $user->last_login_at = now();
+            $user->save();
+            // Redirect sesuai role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
             }
 
-            // Fallback: logout jika role tidak dikenali
+            if ($user->role === 'agent') {
+                return redirect()->route('agent.dashboard');
+            }
+
+            if ($user->role === 'jemaah') {
+                return redirect()->route('jemaah.dashboard');
+            }
+
             Auth::logout();
-            return redirect()->route('landingpage')->with('error', 'Role tidak dikenali');
+            return redirect()->route('landingpage')
+                ->with('error', 'Role tidak dikenali');
         }
 
-        // Jika login gagal
         return back()->withInput()->withErrors([
             'email' => 'Email atau password salah',
         ]);
     }
+
 
 
     // ===== Logout =====
@@ -97,7 +100,7 @@ class AuthC extends Controller
         ]);
 
         // 3. Tambahkan role 'Jemaah' ke user (many-to-many)
-        $jemaahRole = Role::where('name', 'Jemaah')->first();
+        $jemaahRole = Role::where('name', 'jemaah')->first();
         if ($jemaahRole) {
             $user->roles()->attach($jemaahRole->id);
         }

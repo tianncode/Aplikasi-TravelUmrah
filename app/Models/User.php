@@ -32,8 +32,9 @@ class User extends Authenticatable
     // Relasi many-to-many dengan roles
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
+
 
     // Accessor untuk mendapatkan role (nama role pertama)
     public function getRoleAttribute()
@@ -43,10 +44,15 @@ class User extends Authenticatable
         }
 
         return match ($this->userable_type) {
-            'App\Models\Admin' => 'Admin',
-            'App\Models\Agent' => 'Agent',
-            'App\Models\Jemaah', 'App\Models\People' => 'Jemaah',
+            'App\Models\Admin' => 'admin',
+            'App\Models\Agent' => 'agent',
+            'App\Models\Jemaah', 'App\Models\People' => 'jemaah',
             default => null,
         };
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return $this->is_active ? 'Active' : 'Inactive';
     }
 }

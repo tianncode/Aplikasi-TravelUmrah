@@ -12,6 +12,19 @@
 
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-60 bg-white"
                 style="border-radius: 20px 0 0 20px; position: relative;">
+                <!-- Modern Back Button -->
+                <a href="{{ route('landingpage') }}"
+                    class="position-absolute d-flex align-items-center justify-content-center"
+                    style="top: 24px; left: 24px; width: 42px; height: 42px; border-radius: 50%; background: rgba(15, 76, 117, 0.08); backdrop-filter: blur(6px); 
+                    transition: all 0.3s ease; text-decoration: none;"
+                    onmouseover="this.style.background='rgba(15, 76, 117, 0.18)'; this.style.transform='translateX(-3px)'"
+                    onmouseout="this.style.background='rgba(15, 76, 117, 0.08)'; this.style.transform='translateX(0)'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0F4C75"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 1-.5.5H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.498.498 0 0 1-.146-.35v-.008a.498.498 0 0 1 .146-.35l4-4a.5.5 0 1 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8z" />
+                    </svg>
+                </a>
                 <div class="d-flex flex-center flex-column flex-column-fluid p-10 py-lg-15">
                     <div class="w-100" style="max-width: 480px;">
 

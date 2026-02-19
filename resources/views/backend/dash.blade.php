@@ -5,6 +5,136 @@
 @endsection
 
 @section('content')
+    <!--begin::Toolbar-->
+    <div id="kt_app_toolbar" class="app-toolbar ">
+
+        <!--begin::Toolbar container-->
+        <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex flex-lg-column py-3 py-lg-6 ">
+
+
+
+            <!--begin::Page title-->
+            <div class="page-title d-flex align-items-center gap-1 me-3" data-kt-swapper="true"
+                data-kt-swapper-mode="{default: 'prepend', lg: 'prepend'}"
+                data-kt-swapper-parent="{default: '#kt_app_content_container', lg: '#kt_app_header_wrapper'}">
+                <!--begin::Title-->
+                <h1 class="text-gray-900 fw-bolder fs-2x mb-1 lh-1">
+                    Account
+                </h1>
+                <!--end::Title-->
+
+
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-base ms-3">
+
+
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                        <a href="index708f.html?page=index" class="text-gray-700 text-hover-primary">
+                            <i class="ki-duotone ki-home fs-3 text-gray-500 ms-2"></i>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n2"></i>
+                    </li>
+                    <!--end::Item-->
+
+
+
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                        Account </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n2"></i>
+                    </li>
+                    <!--end::Item-->
+
+
+
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-gray-500">
+                        Overview </li>
+                    <!--end::Item-->
+
+
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+            <!--begin::Navs-->
+            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 active"
+                        href="index708f.html?page=index">
+                        Overview </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="index1477.html?page=account/settings">
+                        Settings </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="indexbbde.html?page=account/security">
+                        Security </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="index93d4.html?page=account/billing">
+                        Billing </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="index28ff.html?page=account/statements">
+                        Statements </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="indexe638.html?page=account/referrals">
+                        Referrals </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="index93a9.html?page=account/api-keys">
+                        API Keys </a>
+                </li>
+                <!--end::Nav item-->
+                <!--begin::Nav item-->
+                <li class="nav-item mt-2">
+                    <a class="nav-link text-active-primary ms-0 me-5 me-lg-8 pt-2 pb-3 pt-lg-4 pb-lg-5 "
+                        href="indexcf4a.html?page=account/logs">
+                        Logs </a>
+                </li>
+                <!--end::Nav item-->
+            </ul>
+            <!--begin::Navs-->
+
+            <!--begin::Separator-->
+            <div class="app-toolbar-container-separator separator d-none d-lg-flex"></div>
+            <!--end::Separator-->
+        </div>
+        <!--end::Toolbar container-->
+    </div>
+    <!--end::Toolbar-->
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
 
@@ -199,7 +329,8 @@
                             <!--begin::Toolbar-->
                             <div class="card-toolbar">
                                 <!--begin::Menu-->
-                                <button class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
+                                <button
+                                    class="btn btn-icon btn-color-gray-500 btn-active-color-primary justify-content-end"
                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
                                     data-kt-menu-overflow="true">
                                     <i class="ki-duotone ki-dots-square fs-1 text-gray-500 me-n1"><span
