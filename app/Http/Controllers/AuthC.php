@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jamaah;
 use App\Models\User;
 use App\Models\People;
 use App\Models\Role;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -76,36 +79,41 @@ class AuthC extends Controller
     // ===== Proses Register Jemaah =====
     public function registerJemaah(Request $request)
     {
-        // Validasi input
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        // 1. Buat People record terlebih dahulu
-        $people = People::create([
-            'fullname' => $request->name,
-        ]);
+        DB::beginTransaction();
+        try {
+            // 1. Create People
+            $people = People::create([
+                'fullname' => $request->username,
+            ]);
 
-        // 2. Buat user dengan relasi polymorphic ke People (bukan Jemaah)
-        // Catatan: Jemaah akan dibuat nanti ketika user memilih paket
-        $user = User::create([
-            'username' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'is_active' => true,
-            'userable_id' => $people->id,
-            'userable_type' => 'App\Models\People',
-        ]);
+            // 2. Create User (akun login saja)
+            $user = User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_active' => true,
+                'userable_id' => $people->id,
+                'userable_type' => People::class,
+            ]);
 
-        // 3. Tambahkan role 'Jemaah' ke user (many-to-many)
-        $jemaahRole = Role::where('name', 'jemaah')->first();
-        if ($jemaahRole) {
-            $user->roles()->attach($jemaahRole->id);
+            // 3. Attach role jemaah
+            $role = Role::where('name', 'jemaah')->first();
+            if ($role) {
+                $user->roles()->attach($role->id);
+            }
+
+            DB::commit();
+
+            return redirect()->route('login')->with('success', 'Registrasi berhasil!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors('Register gagal: ' . $e->getMessage());
         }
-
-        // Redirect ke halaman login
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }

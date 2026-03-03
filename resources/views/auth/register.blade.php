@@ -68,34 +68,38 @@
                             <div class="border-bottom border-gray-200 w-100"></div>
                         </div>
 
-                        <form class="form w-100" action="#" method="post">
+                        <form class="form w-100" action="{{ route('jemaah.register.submit') }}" method="POST">
                             @csrf
 
                             <div class="fv-row mb-5">
                                 <input type="text" name="username" placeholder="Username"
-                                    class="form-control form-control-lg bg-light border-0 @error('username') is-invalid @enderror"
-                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
+                                    class="form-control form-control-lg bg-light border-0"
+                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; 
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
                                     required />
                             </div>
 
                             <div class="fv-row mb-5">
                                 <input type="email" name="email" placeholder="Email Address"
-                                    class="form-control form-control-lg bg-light border-0 @error('email') is-invalid @enderror"
-                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
+                                    class="form-control form-control-lg bg-light border-0"
+                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; 
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
                                     required />
                             </div>
 
                             <div class="fv-row mb-5">
                                 <input type="password" name="password" placeholder="Password"
-                                    class="form-control form-control-lg bg-light border-0 @error('password') is-invalid @enderror"
-                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
+                                    class="form-control form-control-lg bg-light border-0"
+                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; 
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
                                     required />
                             </div>
 
                             <div class="fv-row mb-8">
                                 <input type="password" name="password_confirmation" placeholder="Confirm Password"
                                     class="form-control form-control-lg bg-light border-0"
-                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
+                                    style="background-color: #F6F8FA !important; border-radius: 10px; padding: 1.1rem; 
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05); color: #3F4254; font-weight: 500;"
                                     required />
                             </div>
 

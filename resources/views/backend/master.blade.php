@@ -1741,11 +1741,13 @@ License: For each use you must have a valid license purchased only from above li
 
                             <!--begin:Info-->
                             <div class="d-flex flex-column align-items-start flex-grow-1">
-                                <a href="indexd0c8.html?page=pages/user-profile/projects"
-                                    class="btn-title fs-6 fw-bold">Johnson</a>
+                                <a href="#" class="btn-title fs-6 fw-bold">
+                                    {{ Auth::user()->username }}
+                                </a>
 
-                                <a href="indexe0f9.html?page=pages/user-profile/overview"
-                                    class="btn-desc fs-7 fw-bold d-block">React Developer</a>
+                                <a href="#" class="btn-desc fs-7 fw-bold d-block">
+                                    {{ Auth::user()->email }}
+                                </a>
                             </div>
                             <!--end:Info-->
 
