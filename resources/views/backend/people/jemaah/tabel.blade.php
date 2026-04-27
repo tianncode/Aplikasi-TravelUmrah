@@ -232,49 +232,34 @@
                     <thead>
                         <tr>
                             <th class="w-check"><input type="checkbox" class="checkbox"></th>
-                            <th>Jemaah</th>
-                            <th>No. Registrasi</th>
-                            <th>Grup</th>
-                            <th>Keberangkatan</th>
-                            <th>Pembayaran</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>No. Telepon</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($jamaahs as $jamaah)
+                        @foreach ($users as $user)
                             @php
-                                $person = $jamaah->people;
+                                $person = $user->userable;
 
                                 $fullname = $person->fullname ?? '-';
                                 $phone = $person->phone ?? '-';
 
-                                $reg_number = $jamaah->registration_number ?? '-';
-                                $departure = $jamaah->departure_date
-                                    ? \Carbon\Carbon::parse($jamaah->departure_date)->format('d M Y')
-                                    : '-';
+                                // Karena tidak ada jamaah lagi, kita kosongkan agar tampilan tetap sama
+                                $reg_number = '-';
+                                $departure = '-';
+                                $group_name = '-';
 
-                                $group_name = $jamaah->group->name ?? 'Tanpa Grup';
+                                // STATUS dari users.is_active
+                                $status_label = $user->is_active ? 'Aktif' : 'Tidak Aktif';
+                                $status_badge = $user->is_active ? 'success' : 'danger';
 
-                                // STATUS
-                                $status_map = [
-                                    'active' => ['label' => 'Aktif', 'badge' => 'success'],
-                                    'pending' => ['label' => 'Pending', 'badge' => 'warning'],
-                                    'cancelled' => ['label' => 'Batal', 'badge' => 'danger'],
-                                    'done' => ['label' => 'Selesai', 'badge' => 'info'],
-                                ];
-                                $status_key = strtolower($jamaah->status ?? 'pending');
-                                $status_label = $status_map[$status_key]['label'] ?? ucfirst($status_key);
-                                $status_badge = $status_map[$status_key]['badge'] ?? 'secondary';
-
-                                // PEMBAYARAN
-                                $payments = $jamaah->payments;
-                                $total_paid = $payments->where('status', 'paid')->sum('amount');
-                                $all_paid = $payments->count() > 0 && $payments->every(fn($p) => $p->status === 'paid');
-                                $has_paid = $total_paid > 0;
-
-                                $pay_label = $all_paid ? 'Lunas' : ($has_paid ? 'DP' : 'Belum Bayar');
-                                $pay_badge = $all_paid ? 'success' : ($has_paid ? 'warning' : 'danger');
+                                // Tidak ada payments lagi
+                                $pay_label = 'Belum Bayar';
+                                $pay_badge = 'secondary';
 
                                 // AVATAR
                                 $colors = ['0D6EFD', '6610F2', '6F42C1', 'D63384', 'DC3545', 'FD7E14', '198754'];
@@ -285,7 +270,7 @@
                                 {{-- CHECKBOX --}}
                                 <td><input type="checkbox" class="checkbox"></td>
 
-                                {{-- JEMAAH --}}
+                                {{-- NAMA --}}
                                 <td>
                                     <div class="user-cell">
                                         <img class="avatar"
@@ -293,49 +278,49 @@
                                             alt="{{ $fullname }}">
                                         <div>
                                             <div class="fw-semibold small text-dark">{{ $fullname }}</div>
-                                            <div class="text-muted small">
-                                                <i class="ki-duotone ki-phone fs-6"></i> {{ $phone }}
-                                            </div>
                                         </div>
                                     </div>
                                 </td>
 
-                                {{-- NO REGISTRASI --}}
-                                <td class="small fw-semibold">{{ $reg_number }}</td>
+                                {{-- USERNAME --}}
+                                <td class="small fw-semibold">
+                                    {{ $user->username ?? '-' }}
+                                </td>
 
-                                {{-- GRUP --}}
-                                <td class="small">{{ $group_name }}</td>
+                                {{-- EMAIL --}}
+                                <td class="small text-muted">
+                                    {{ $user->email ?? '-' }}
+                                </td>
 
-                                {{-- KEBERANGKATAN --}}
-                                <td class="text-muted small">{{ $departure }}</td>
-
-                                {{-- PEMBAYARAN --}}
-                                <td>
-                                    <span class="badge bg-{{ $pay_badge }}">{{ $pay_label }}</span>
+                                {{-- NO TELEPON --}}
+                                <td class="small">
+                                    <i class="ki-duotone ki-phone fs-6"></i> {{ $phone }}
                                 </td>
 
                                 {{-- STATUS --}}
                                 <td>
-                                    <span class="badge bg-{{ $status_badge }}">{{ $status_label }}</span>
+                                    <span class="badge bg-{{ $status_badge }}">
+                                        {{ $status_label }}
+                                    </span>
                                 </td>
 
                                 {{-- AKSI --}}
                                 <td>
                                     <div class="actions">
                                         <button class="action-btn edit" data-bs-toggle="modal"
-                                            data-bs-target="#modalUpdateJamaah{{ $jamaah->id }}"
-                                            data-id="{{ $jamaah->id }}">
+                                            data-bs-target="#modalUpdateUser{{ $user->id }}"
+                                            data-id="{{ $user->id }}">
                                             <i class="ki-duotone ki-pencil fs-4"></i>
                                         </button>
 
                                         <button class="action-btn view" data-bs-toggle="modal"
-                                            data-bs-target="#modalViewJamaah{{ $jamaah->id }}"
-                                            data-id="{{ $jamaah->id }}">
+                                            data-bs-target="#modalViewUser{{ $user->id }}"
+                                            data-id="{{ $user->id }}">
                                             <i class="ki-duotone ki-eye fs-4"></i>
                                         </button>
 
                                         <button class="action-btn delete"
-                                            onclick="confirmDelete({{ $jamaah->id }}, '{{ addslashes($fullname) }}')">
+                                            onclick="confirmDelete({{ $user->id }}, '{{ addslashes($fullname) }}')">
                                             <i class="ki-duotone ki-trash fs-4"></i>
                                         </button>
                                     </div>
@@ -555,79 +540,6 @@
 
                                                 </div>
                                             </div>
-
-                                            {{-- SECTION: Data Booking --}}
-                                            <div class="form-section">
-                                                <div class="section-header">
-                                                    <i class="ki-duotone ki-airplane fs-3 text-primary">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                    <h6 class="section-title">Data Booking</h6>
-                                                </div>
-                                                <div class="row g-3">
-
-                                                    <div class="col-md-6">
-                                                        <label class="modern-label">Tipe Paket <span
-                                                                class="required">*</span></label>
-                                                        <select name="package_type" id="packageType"
-                                                            class="modern-select" required>
-                                                            <option value="">-- Pilih Tipe Paket --</option>
-                                                            @foreach ($package_types as $type)
-                                                                <option value="{{ strtolower($type) }}">
-                                                                    {{ ucfirst($type) }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <label class="modern-label">Paket <span
-                                                                class="required">*</span></label>
-                                                        <select name="package_id" id="packageSelect"
-                                                            class="modern-select" required disabled>
-                                                            <option value="">-- Pilih Tipe Dulu --</option>
-                                                        </select>
-                                                    </div>
-
-                                                    {{-- GRUP --}}
-                                                    <div class="col-md-6">
-                                                        <label class="modern-label">Grup</label>
-                                                        <select name="group_id" id="groupSelect" class="modern-select"
-                                                            required disabled>
-                                                            <option value="">-- Pilih Group --</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <label class="modern-label">Tanggal Keberangkatan <span
-                                                                class="required">*</span></label>
-                                                        <div class="input-with-icon">
-                                                            <i class="ki-duotone ki-calendar input-icon">
-                                                                <span class="path1"></span>
-                                                                <span class="path2"></span>
-                                                            </i>
-                                                            <input type="date" name="departure_date"
-                                                                id="departureDate" class="modern-input has-icon" required>
-                                                        </div>
-                                                        <small class="form-hint">Otomatis terisi saat memilih paket</small>
-                                                    </div>
-
-                                                    {{-- STATUS --}}
-                                                    <div class="col-md-6">
-                                                        <label class="modern-label">Status <span
-                                                                class="required">*</span></label>
-                                                        <select name="status" class="modern-select" required>
-                                                            <option value="draft" selected>Draft</option>
-                                                            <option value="booked">Booked</option>
-                                                            <option value="paid">Paid</option>
-                                                            <option value="documents_verified">Documents Verified</option>
-                                                            <option value="ready">Ready</option>
-                                                            <option value="departed">Departed</option>
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-                                            </div>
                                             <div class="modern-modal-footer">
                                                 <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
                                                     <i class="ki-duotone ki-cross-circle fs-3">
@@ -673,86 +585,4 @@
 
         </div>
     </div>
-    <script>
-        // Data dari Laravel
-        const packagesData = @json($packages);
-        const groupsData = @json($groups);
-
-        const packageType = document.getElementById('packageType');
-        const packageSelect = document.getElementById('packageSelect');
-        const groupSelect = document.getElementById('groupSelect');
-        const departureDate = document.getElementById('departureDate');
-
-        // --- Pilih Tipe Paket ---
-        packageType.addEventListener('change', function() {
-            const selectedType = this.value;
-
-            // Reset paket & grup & tanggal
-            packageSelect.innerHTML = '<option value="">-- Pilih Paket --</option>';
-            packageSelect.disabled = true;
-
-            groupSelect.innerHTML = '<option value="">-- Pilih Paket Dulu --</option>';
-            groupSelect.disabled = true;
-
-            departureDate.value = '';
-
-            if (!selectedType) return;
-
-            // Filter paket berdasarkan tipe dan status 'published'
-            const filteredPackages = packagesData.filter(p =>
-                p.type.toLowerCase() === selectedType.toLowerCase() &&
-                p.status.toLowerCase() === 'published'
-            );
-
-            if (filteredPackages.length === 0) {
-                packageSelect.innerHTML = '<option value="">Tidak ada paket tersedia</option>';
-                return;
-            }
-
-            filteredPackages.forEach(p => {
-                const option = document.createElement('option');
-                option.value = p.id;
-                option.textContent = `${p.name} - Rp ${Number(p.price).toLocaleString('id-ID')}`;
-                option.dataset.departure = p.departure_date;
-                packageSelect.appendChild(option);
-            });
-
-            packageSelect.disabled = false;
-        });
-
-        // --- Pilih Paket ---
-        packageSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const selectedId = selectedOption.value;
-
-            // Reset grup & tanggal
-            groupSelect.innerHTML = '<option value="">-- Pilih Paket Dulu --</option>';
-            groupSelect.disabled = true;
-            departureDate.value = '';
-
-            if (!selectedId) return;
-
-            const selectedPackage = packagesData.find(p => p.id == selectedId);
-            if (!selectedPackage) return;
-
-            // Filter grup berdasarkan package_id saja
-            const relatedGroups = groupsData.filter(g => g.package_id == selectedPackage.id);
-
-            if (relatedGroups.length === 0) {
-                groupSelect.innerHTML = '<option value="">Tidak ada grup tersedia</option>';
-            } else {
-                relatedGroups.forEach(g => {
-                    const option = document.createElement('option');
-                    option.value = g.id;
-                    option.textContent = g.name;
-                    groupSelect.appendChild(option);
-                });
-            }
-
-            groupSelect.disabled = false;
-
-            // Auto fill tanggal keberangkatan
-            departureDate.value = selectedPackage.departure_date;
-        });
-    </script>
 @endsection

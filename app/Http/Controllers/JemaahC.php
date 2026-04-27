@@ -18,83 +18,65 @@ class JemaahC extends Controller
 {
   public function index()
   {
-    $jamaahs       = Jamaah::with(['people', 'group', 'payments'])->get();
-    $groups        = JamaahGroup::all();
+    $users = User::with('userable')
+      ->where('userable_type', People::class)
+      ->get();
+
+    $groups = JamaahGroup::all();
     $packages = Package::where('status', 'published')->get();
     $package_types = Package::where('status', 'published')
       ->distinct()
       ->pluck('type');
 
-
-    return view('backend.people.jemaah.tabel', compact('jamaahs', 'groups', 'packages', 'package_types'));
+    return view(
+      'backend.people.jemaah.tabel',
+      compact('users', 'groups', 'packages', 'package_types')
+    );
   }
 
   public function store(Request $request)
   {
     $request->validate([
-      'username'              => 'required|string|unique:users,username',
-      'email'                 => 'required|email|unique:users,email',
-      'password'              => 'required|min:8|same:password_confirmation',
+      'username' => 'required|unique:users,username',
+      'email' => 'required|email|unique:users,email',
+      'password' => 'required|min:8|same:password_confirmation',
       'password_confirmation' => 'required',
 
-      'fullname'              => 'required|string|max:255',
-      'gender'                => 'required|in:L,P',
-      'birth_place'           => 'required|string|max:255',
-      'birth_date'            => 'required|date',
-      'phone'                 => 'required|string|max:20',
-      'address'               => 'required|string',
-
-      'package_id'            => 'required|exists:packages,id',
-      'departure_date'        => 'required|date',
-      'status'                => 'required|in:draft,booked,paid,documents_verified,ready,departed',
-      'group_id'              => 'nullable|exists:jamaah_groups,id',
+      'fullname' => 'required',
+      'gender' => 'required',
+      'birth_place' => 'required',
+      'birth_date' => 'required',
+      'phone' => 'required',
+      'address' => 'required',
     ]);
 
-    DB::beginTransaction();
+    // 1️⃣ Insert People
+    $people = People::create([
+      'fullname' => $request->fullname,
+      'gender' => $request->gender,
+      'birth_place' => $request->birth_place,
+      'birth_date' => $request->birth_date,
+      'phone' => $request->phone,
+      'address' => $request->address,
+    ]);
 
-    try {
+    // 2️⃣ Insert User
+    $user = User::create([
+      'username' => $request->username,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+      'userable_id' => $people->id,
+      'userable_type' => People::class,
+      'is_active' => 1,
+    ]);
 
-      $people = People::create([
-        'fullname'    => $request->fullname,
-        'gender'      => $request->gender,
-        'birth_place' => $request->birth_place,
-        'birth_date'  => $request->birth_date,
-        'phone'       => $request->phone,
-        'address'     => $request->address,
-      ]);
+    // 3️⃣ Assign Role Jamaah
+    $jamaahRole = Role::where('name', 'jamaah')->first();
 
-      $user = User::create([
-        'userable_id'   => $people->id,
-        'userable_type' => People::class,
-        'username'      => $request->username,
-        'email'         => $request->email,
-        'password'      => Hash::make($request->password),
-        'is_active'     => 1,
-      ]);
-
-      $jamaahRole = Role::where('name', 'jamaah')->firstOrFail();
-      $user->roles()->sync([$jamaahRole->id]); // lebih aman dari attach
-
-      do {
-        $reg_number = 'JMH-' . now()->format('Ymd') . '-' . strtoupper(Str::random(5));
-      } while (Jamaah::where('registration_number', $reg_number)->exists());
-
-      Jamaah::create([
-        'people_id'           => $people->id,
-        'agent_id'            => 1,
-        'registration_number' => $reg_number,
-        'departure_date'      => $request->departure_date,
-        'package_id'          => $request->package_id,
-        'group_id'            => $request->group_id,
-        'status'              => $request->status,
-      ]);
-
-      DB::commit();
-
-      return redirect()->back()->with('success', 'Jemaah berhasil ditambahkan!');
-    } catch (\Exception $e) {
-      DB::rollBack();
-      return redirect()->back()->with('error', $e->getMessage());
+    if ($jamaahRole) {
+      $user->roles()->sync([$jamaahRole->id]);
     }
+
+    return redirect()->back()->with('success', 'Jemaah berhasil ditambahkan!');
   }
 }

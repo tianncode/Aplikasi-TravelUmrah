@@ -46,7 +46,7 @@ class User extends Authenticatable
         return match ($this->userable_type) {
             'App\Models\Admin' => 'admin',
             'App\Models\Agent' => 'agent',
-            'App\Models\Jemaah', 'App\Models\People' => 'jemaah',
+            'App\Models\Jamaah', 'App\Models\People' => 'jemaah',
             default => null,
         };
     }

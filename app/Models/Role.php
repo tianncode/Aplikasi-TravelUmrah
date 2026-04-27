@@ -13,10 +13,8 @@ class Role extends Model
 
   public $timestamps = true;
 
-  // Relasi many-to-many dengan User
   public function users()
   {
-    return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id')
-      ->withTimestamps();
+    return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id');
   }
 }

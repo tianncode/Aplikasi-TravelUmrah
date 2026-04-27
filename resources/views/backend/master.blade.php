@@ -2089,46 +2089,34 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Sidebar menu-->
                             @auth
                                 @php
-                                    $roles = auth()->user()->roles->pluck('name')->toArray();
+                                    $user = auth()->user();
+                                    $type = $user->userable_type;
                                 @endphp
 
                                 <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false"
                                     class="menu menu-column menu-rounded menu-sub-indention menu-active-bg mb-7">
 
                                     {{-- ================= ADMIN ONLY ================= --}}
-                                    @if (in_array('admin', $roles))
-                                        <!--begin:Menu item-->
+                                    @if ($type === App\Models\Admin::class)
                                         <div class="menu-item pt-5">
                                             <div class="menu-content">
                                                 <span class="menu-heading fw-bold text-uppercase fs-5">Dashboards</span>
                                             </div>
                                         </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <a class="menu-link active" href="/dashboard">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-element-11 fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                    </i>
+                                                    <i class="ki-duotone ki-element-11 fs-1"></i>
                                                 </span>
                                                 <span class="menu-title">Landing Page</span>
                                             </a>
                                         </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
                                         <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-some-files fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
+                                                    <i class="ki-duotone ki-some-files fs-1"></i>
                                                 </span>
                                                 <span class="menu-title">Management Users</span>
                                                 <span class="menu-arrow"></span>
@@ -2137,33 +2125,22 @@ License: For each use you must have a valid license purchased only from above li
                                             <div class="menu-sub menu-sub-accordion">
                                                 <div class="menu-item">
                                                     <a class="menu-link" href="{{ route('agent.tabel') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
                                                         <span class="menu-title">Agent</span>
                                                     </a>
                                                 </div>
 
                                                 <div class="menu-item">
                                                     <a class="menu-link" href="{{ route('jemaah.tabel') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
                                                         <span class="menu-title">Jemaah</span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
                                         <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-some-files fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
+                                                    <i class="ki-duotone ki-some-files fs-1"></i>
                                                 </span>
                                                 <span class="menu-title">Management Paket</span>
                                                 <span class="menu-arrow"></span>
@@ -2171,30 +2148,21 @@ License: For each use you must have a valid license purchased only from above li
 
                                             <div class="menu-sub menu-sub-accordion">
                                                 <div class="menu-item">
-                                                    <a class="menu-link {{ request()->route('type') ? '' : 'active' }}"
-                                                        href="{{ route('package.tabel') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
+                                                    <a class="menu-link" href="{{ route('package.tabel') }}">
                                                         <span class="menu-title">Package</span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end:Menu item-->
                                     @endif
 
 
                                     {{-- ================= LIST PAKET (ADMIN + AGENT + JEMAAH) ================= --}}
-                                    @if (array_intersect(['admin', 'agent', 'jemaah'], $roles))
-                                        <!--begin:Menu item-->
+                                    @if (in_array($type, [App\Models\Admin::class, App\Models\Agent::class, App\Models\People::class]))
                                         <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
                                             <span class="menu-link">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-some-files fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
+                                                    <i class="ki-duotone ki-some-files fs-1"></i>
                                                 </span>
                                                 <span class="menu-title">List Paket</span>
                                                 <span class="menu-arrow"></span>
@@ -2204,9 +2172,6 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <a class="menu-link {{ request()->route('type') == 'umrah' ? 'active' : '' }}"
                                                         href="{{ route('package.tabel', 'umrah') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
                                                         <span class="menu-title">Umrah</span>
                                                     </a>
                                                 </div>
@@ -2214,37 +2179,27 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <a class="menu-link {{ request()->route('type') == 'haji' ? 'active' : '' }}"
                                                         href="{{ route('package.tabel', 'haji') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
                                                         <span class="menu-title">Haji</span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--end:Menu item-->
                                     @endif
 
 
-                                    {{-- ================= LIST BOOKING (ADMIN + AGENT) ================= --}}
-                                    @if (array_intersect(['admin', 'agent'], $roles))
-                                        <!--begin:Menu item-->
+                                    {{-- ================= LIST BOOKING (ADMIN + AGENT ONLY) ================= --}}
+                                    @if (in_array($type, [App\Models\Admin::class, App\Models\Agent::class]))
                                         <div class="menu-item">
                                             <a class="menu-link" href="">
                                                 <span class="menu-icon">
-                                                    <i class="ki-duotone ki-rescue fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
+                                                    <i class="ki-duotone ki-rescue fs-1"></i>
                                                 </span>
                                                 <span class="menu-title">List Booking</span>
                                             </a>
                                         </div>
-                                        <!--end:Menu item-->
                                     @endif
 
                                 </div>
-
                             @endauth
 
                             <!--end::Sidebar menu-->
